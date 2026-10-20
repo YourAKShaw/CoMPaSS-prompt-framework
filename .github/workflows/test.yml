@@ -61,6 +61,8 @@ jobs:
         with:
           python-version: "3.13"
       - name: Check commit messages
+        # Dependabot writes its own messages and cannot add the required trailers.
+        if: github.event.pull_request.user.login != 'dependabot[bot]'
         env:
           BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
           HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
@@ -74,6 +76,10 @@ jobs:
           fi
           status=0
           for sha in $commits; do
+            # Merged Dependabot pull requests reach main with Dependabot as author.
+            if [ "$(git log -1 --format=%an "$sha")" = "dependabot[bot]" ]; then
+              continue
+            fi
             echo "$(git log -1 --format='%h %s' "$sha")"
             git log -1 --format=%B "$sha" | python3 .github/scripts/lint-commit.py --trailer "$TRAILER" - || status=1
           done
