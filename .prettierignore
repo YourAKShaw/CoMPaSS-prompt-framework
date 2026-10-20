@@ -1,0 +1,7 @@
+# Markdown is authored by hand; the paper copy and its extracts must stay verbatim.
+*.md
+node_modules/
+dist/
+_site/
+package-lock.json
+resource/

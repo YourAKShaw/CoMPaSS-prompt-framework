@@ -1,0 +1,38 @@
+{
+  "name": "compass-prompt-framework",
+  "version": "0.1.0-alpha",
+  "private": true,
+  "description": "Development tooling for the compass-prompt-framework Agent Skill (CoMPaSS analysis-first prompting).",
+  "license": "MIT",
+  "author": "Ayush Kumar Shaw",
+  "homepage": "https://github.com/YourAKShaw/CoMPaSS-prompt-framework#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YourAKShaw/CoMPaSS-prompt-framework.git"
+  },
+  "bugs": {
+    "url": "https://github.com/YourAKShaw/CoMPaSS-prompt-framework/issues"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22.18.0"
+  },
+  "scripts": {
+    "test": "node --test skills/compass-prompt-framework/tests/test-*.ts",
+    "typecheck": "tsc -p tsconfig.json",
+    "lint": "eslint . && prettier --check . && tsc -p tsconfig.json",
+    "format": "prettier --write .",
+    "validate": "node skills/compass-prompt-framework/scripts/validate-skill.ts",
+    "references:generate": "python3 skills/compass-prompt-framework/scripts/generate-references.py",
+    "references:check": "python3 skills/compass-prompt-framework/scripts/generate-references.py --check",
+    "check": "npm run validate && npm run references:check && npm test && npm run lint"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^22.20.5",
+    "eslint": "^10.13.0",
+    "prettier": "^3.9.10",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.72.0"
+  }
+}
