@@ -1,0 +1,51 @@
+# Local research inputs (the packaged copy lives in the skill's references/)
+resource/
+
+# Operating-system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editors and IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Node.js tooling
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.npm/
+.eslintcache
+*.tsbuildinfo
+
+# Python caches (reference generator)
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Build, test, and documentation-site output
+dist/
+build/
+coverage/
+_site/
+.jekyll-cache/
+*.log
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+
+# Temporary archives and patches
+*.tmp
+*.temp
+*.bak
+*.orig
+*.rej
+*.zip
