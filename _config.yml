@@ -1,0 +1,19 @@
+# GitHub Pages (Jekyll) configuration for the documentation site built by
+# .github/workflows/docs-build.yml. Markdown links between .md files are
+# rewritten to the rendered pages by jekyll-relative-links.
+title: CoMPaSS Prompt Framework
+description: An analysis-first prompting framework for consequential prompts, agent briefs, and decisions. Research-grade; not benchmarked.
+plugins:
+  - jekyll-relative-links
+relative_links:
+  enabled: true
+  collections: false
+exclude:
+  - node_modules
+  - resource
+  - package.json
+  - package-lock.json
+  - tsconfig.json
+  - eslint.config.mjs
+  - "*.ts"
+  - "*.py"
