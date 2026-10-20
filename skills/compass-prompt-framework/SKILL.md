@@ -100,7 +100,7 @@ When you will not run the prompt yourself, end at step 11 and hand step 12 to th
 
 ## Worked examples
 
-Examples 1–3 are verbatim from Section 7 of the paper (illustrative, not test results). Example 4 is this skill's custom example. All of them, plus the counter-example, are consolidated in [worked examples](references/worked-examples.md).
+Examples 1–3 are verbatim from Section 7 of the paper (illustrative, not test results). Example 4 is this skill's custom example. All of them, plus the counter-example, are consolidated in [worked examples](references/worked-examples.md); each also stands alone as an asset ([1](assets/examples/example-1-announcement.md), [2](assets/examples/example-2-decision.md), [3](assets/examples/example-3-agentic.md), [4](assets/examples/example-4-custom.md)).
 
 ### Example 1: Communication task (optional components *omitted*)
 
