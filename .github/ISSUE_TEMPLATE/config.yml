@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Usage and support guidance
+    url: https://github.com/YourAKShaw/CoMPaSS-prompt-framework/blob/HEAD/.github/SUPPORT.md
+    about: Find the starting point for using the skill and asking questions.
+  - name: Pre-registered evaluation plan
+    url: https://github.com/YourAKShaw/CoMPaSS-prompt-framework/blob/HEAD/skills/compass-prompt-framework/references/evaluation-plan.md
+    about: Read the plan before proposing or contributing an evaluation run.

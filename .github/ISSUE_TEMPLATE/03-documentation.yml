@@ -1,0 +1,22 @@
+name: Documentation correction
+description: Report unclear guidance, broken links, citation problems, or inconsistent examples.
+labels: ["documentation"]
+body:
+  - type: input
+    id: location
+    attributes:
+      label: File, section, or link
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What is wrong or unclear?
+      description: Quote only the relevant passage and explain the issue. The packaged paper copy is immutable; report errors in it as a proposed revision note rather than an edit.
+    validations:
+      required: true
+  - type: textarea
+    id: correction
+    attributes:
+      label: Suggested correction or supporting source
+      description: If known, suggest wording or link to an authoritative primary source.

@@ -1,0 +1,43 @@
+name: Bug report
+description: Report incorrect guidance, a helper script failure, or a validator problem.
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Search existing issues before submitting. Use a minimal, sanitized example; remove secrets, private prompts, customer data, and personal information.
+  - type: input
+    id: affected-files
+    attributes:
+      label: Affected files or component
+      placeholder: scripts/validate-prompt.ts, SKILL.md, or the Success spec rules
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Include the smallest requirement, prompt, or command that demonstrates the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: For guidance problems, cite the rule or paper section you expected to apply (for example C-2 or Section 5.3).
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior and impact
+      description: Include relevant output. For agent behavior, distinguish the skill's instructions from the host or model's behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Version and environment
+      description: Include the skill version or commit. For scripts, add OS, Node.js or Python version, and the exact command; for skill behavior, add host, model, and relevant setup if known.
+    validations:
+      required: true

@@ -1,0 +1,34 @@
+name: Improvement proposal
+description: Propose a change to the method, SKILL.md, references, assets, or tooling.
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Search existing issues first. Focus on a concrete prompting use case and keep examples free of sensitive information. CoMPaSS is untested: proposals must not rely on invented performance claims.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or unmet use case
+      description: Who encounters this, and what happens with the current guidance or tooling? A real requirement where CoMPaSS misread intent or added needless overhead is especially useful.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: Identify the affected component (C, o, M, P, a, S, S), files, and the intended behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives and trade-offs
+      description: Consider existing rules, framework creep, token cost, model-agnosticism, and consistency with the paper.
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: How to verify the improvement
+      description: Give an example requirement and observable success criteria. Do not invent evaluation results.
+    validations:
+      required: true

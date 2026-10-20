@@ -1,0 +1,48 @@
+name: Evaluation run
+description: Contribute results from running the pre-registered evaluation plan (paper Section 9.2).
+labels: ["evaluation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for testing CoMPaSS. Follow [docs/EVALUATION.md](https://github.com/YourAKShaw/CoMPaSS-prompt-framework/blob/main/docs/EVALUATION.md) and report only what you observed, including results that do not favor CoMPaSS. Share task suites and outputs only when you have the right to publish them.
+  - type: input
+    id: team
+    attributes:
+      label: Team or organization (for attribution)
+    validations:
+      required: true
+  - type: textarea
+    id: setup
+    attributes:
+      label: Suite, models, and layouts
+      description: Task count by category, every model with vendor and reasoning/non-reasoning type, layout identifiers, run dates, and grading procedure (who graded, how blinding was done).
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Harness validation output
+      description: Paste the output of `node skills/compass-prompt-framework/scripts/evaluate-skill.ts validate-results SUITE RESULTS`.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: report
+    attributes:
+      label: Report
+      description: Paste the output of `evaluate-skill.ts report SUITE RESULTS`, or explain why the run is exploratory.
+      render: markdown
+    validations:
+      required: true
+  - type: textarea
+    id: deviations
+    attributes:
+      label: Deviations from the plan and known limitations
+      description: Any change to tasks, conditions, models, metrics, or grading, and anything you could not verify.
+    validations:
+      required: true
+  - type: input
+    id: data
+    attributes:
+      label: Link to raw data (optional)
