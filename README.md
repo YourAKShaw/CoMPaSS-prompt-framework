@@ -12,7 +12,7 @@ Understand what the user is doing and why, before you write a word of the prompt
 [![License: MIT](https://img.shields.io/badge/License-MIT-2563EB?style=flat-square)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-2563EB?style=flat-square)](.github/CONTRIBUTING.md)
 
-[Explore the skill](skills/compass-prompt-framework/SKILL.md) · [Read the paper](skills/compass-prompt-framework/references/compass-paper.md) · [Documentation](docs/README.md) · [Contribute](.github/CONTRIBUTING.md) · [Get help](.github/SUPPORT.md)
+[Explore the skill](skills/compass-prompt-framework/SKILL.md) · [Read the paper](skills/compass-prompt-framework/references/compass-paper.md) · [Documentation](docs/README.md) · [Contribute](.github/CONTRIBUTING.md) · [Get help](.github/SUPPORT.md) · [Security](SECURITY.md)
 
 </div>
 
@@ -184,6 +184,7 @@ CoMPaSS-prompt-framework/
 ├── .claude-plugin/                    # Claude Code plugin and marketplace manifests
 ├── .github/                           # Workflows, issue forms, PR template, contributing, support
 ├── CHANGELOG.md
+├── SECURITY.md                        # Vulnerability reporting policy
 └── LICENSE                            # MIT License
 ```
 
@@ -202,7 +203,7 @@ This runs the package validator, the reference drift check, the test suite, and 
 
 ## 🤝 Contributing and support
 
-Real failure cases are the most valuable contribution: a request where CoMPaSS misread intent, or where a simpler framework would have done better. So are clearer rules, new examples, and evaluation runs. Start with the [contribution guide](.github/CONTRIBUTING.md), use the [issue forms](https://github.com/YourAKShaw/CoMPaSS-prompt-framework/issues/new/choose), or read the [support guide](.github/SUPPORT.md).
+Real failure cases are the most valuable contribution: a request where CoMPaSS misread intent, or where a simpler framework would have done better. So are clearer rules, new examples, and evaluation runs. Start with the [contribution guide](.github/CONTRIBUTING.md), use the [issue forms](https://github.com/YourAKShaw/CoMPaSS-prompt-framework/issues/new/choose), or read the [support guide](.github/SUPPORT.md). Report vulnerabilities privately as described in the [security policy](SECURITY.md), not in a public issue.
 
 ## License
 
