@@ -1,0 +1,21 @@
+{
+  "name": "compass-prompt-framework",
+  "displayName": "CoMPaSS Prompt Framework",
+  "version": "0.1.0-alpha",
+  "description": "An analysis-first prompting framework for building high-stakes AI prompts, agent briefs, and decision prompts. Research-grade; not benchmarked.",
+  "author": {
+    "name": "Ayush Kumar Shaw",
+    "url": "https://github.com/YourAKShaw"
+  },
+  "homepage": "https://github.com/YourAKShaw/CoMPaSS-prompt-framework#readme",
+  "repository": "https://github.com/YourAKShaw/CoMPaSS-prompt-framework",
+  "license": "MIT",
+  "keywords": [
+    "prompt engineering",
+    "agent briefs",
+    "prompting framework",
+    "decision prompts",
+    "agentic automation",
+    "context engineering"
+  ]
+}

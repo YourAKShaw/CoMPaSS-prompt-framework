@@ -1,0 +1,17 @@
+{
+  "name": "compass-prompt-framework",
+  "owner": {
+    "name": "Ayush Kumar Shaw",
+    "url": "https://github.com/YourAKShaw"
+  },
+  "metadata": {
+    "description": "The CoMPaSS analysis-first prompting skill."
+  },
+  "plugins": [
+    {
+      "name": "compass-prompt-framework",
+      "source": "./",
+      "description": "An analysis-first prompting framework for building high-stakes AI prompts, agent briefs, and decision prompts. Research-grade; not benchmarked."
+    }
+  ]
+}
