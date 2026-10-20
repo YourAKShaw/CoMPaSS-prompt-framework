@@ -1,0 +1,70 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Publish GitHub release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          cache: npm
+      - run: npm ci
+      - name: Run every check
+        run: npm run check
+
+      - name: Match the tag to the skill version
+        id: version
+        run: |
+          version=$(sed -n 's/^  version: "\(.*\)"$/\1/p' skills/compass-prompt-framework/SKILL.md)
+          if [ "v${version}" != "${GITHUB_REF_NAME}" ]; then
+            echo "::error::Tag ${GITHUB_REF_NAME} does not match SKILL.md metadata.version ${version}"
+            exit 1
+          fi
+          echo "version=${version}" >> "$GITHUB_OUTPUT"
+
+      - name: Extract release notes from CHANGELOG.md
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          awk -v version="$VERSION" '
+            $0 ~ "^## \\[" version "\\]" { found = 1; next }
+            found && /^## \[/ { exit }
+            found && /^\[[^]]+\]: / { exit }
+            found { print }
+          ' CHANGELOG.md > release-notes.md
+          if ! grep -q '[^[:space:]]' release-notes.md; then
+            echo "::error::CHANGELOG.md has no section for ${VERSION}"
+            exit 1
+          fi
+
+      - name: Package the skill
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          mkdir -p dist
+          # One top-level skill folder with SKILL.md directly inside, as Claude's upload expects.
+          (cd skills && zip -qr "../dist/compass-prompt-framework-${VERSION}.zip" compass-prompt-framework -x '*/node_modules/*' '*/__pycache__/*')
+          tar -C skills --exclude node_modules --exclude __pycache__ -czf "dist/compass-prompt-framework-${VERSION}.tar.gz" compass-prompt-framework
+          (cd dist && sha256sum * > checksums.txt)
+
+      - name: Create the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          prerelease=""
+          case "$VERSION" in *-*) prerelease="--prerelease" ;; esac
+          gh release create "$GITHUB_REF_NAME" dist/* \
+            --title "CoMPaSS Prompt Framework ${VERSION}" \
+            --notes-file release-notes.md \
+            --verify-tag $prerelease
