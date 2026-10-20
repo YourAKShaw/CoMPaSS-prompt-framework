@@ -1,0 +1,52 @@
+<mission>
+Find and fix the root cause of the intermittent failure of test_apply_discount in
+checkout-service, so the team can trust CI again. A fix that only hides the
+flakiness is a failure: if the non-determinism comes from production code, fix it
+there.
+</mission>
+
+<provisions>
+- Repo: [REPO PATH]. Service code: services/checkout/. Test: tests/test_discounts.py.
+- Run the single test: [TEST COMMAND] -k test_apply_discount
+- Run the full suite: [FULL SUITE COMMAND]
+- CI logs of recent failures: [LOG LOCATION OR CI LINK]
+- Read files as you need them; do not load the whole repository up front.
+</provisions>
+
+<order_of_operations>
+1. Reproduce: run the test repeatedly (at least 50 runs) and record the failure rate
+   before changing anything.
+2. Isolate: identify the source of non-determinism (e.g. ordering, time, shared state,
+   concurrency, randomness, external calls) and confirm it with a targeted experiment.
+3. Fix at the root, in test or production code as the evidence indicates.
+4. Verify (see success_spec), then write the PR description.
+Pause and report after step 2 if the root cause is in production code and the fix
+would change customer-facing pricing behavior.
+</order_of_operations>
+
+<anchors>
+<template note="Format only. Do not reuse its content.">
+## Root cause
+[One paragraph: what was non-deterministic and why.]
+## Fix
+[What changed, in which files, and why this addresses the root cause.]
+## Evidence
+[Failure rate before: X/50. After: Y/N runs. Full suite: pass/fail.]
+## Not verified
+[Anything you could not check.]
+</template>
+</anchors>
+
+<scope>
+- Do not add retries, sleeps, skips, or xfail markers, and do not loosen assertions.
+- Change only files needed for the fix; no unrelated refactors or dependency upgrades.
+- If you cannot reproduce the failure in 200 runs, stop and report what you tried.
+</scope>
+
+<success_spec>
+Done means all of the following are true and reported:
+1. The test passes in at least 200 consecutive runs after the fix.
+2. The full suite passes.
+3. The PR description follows the template, including the "Not verified" section.
+Return: the branch name, the PR description, and the before/after failure rates.
+</success_spec>

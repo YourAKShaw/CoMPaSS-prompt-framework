@@ -1,0 +1,29 @@
+<mission>
+Write a short announcement to my engineering team that we are moving to a weekly
+on-call rotation. The goal is for the team to accept the change and know exactly
+what it means for them; many are frustrated about pager load, so the message must
+show how this change addresses that.
+</mission>
+
+<provisions>
+- Audience: my direct team of backend engineers who currently share on-call ad hoc.
+- Change: weekly rotation starting [START DATE]; handoff at [HANDOFF DAY/TIME];
+  schedule lives at [SCHEDULE LINK]; escalation path is [ESCALATION CONTACT].
+- Known concern: pager load feels unpredictable and unevenly shared.
+- Sender: me, the team lead. Perspective: a lead who has heard the complaints and
+  is fixing a process, not defending one.
+</provisions>
+
+<scope>
+- Use only the facts above; keep every bracketed placeholder exactly as written.
+- Acknowledge the frustration in one sentence, then move to specifics.
+- Avoid promising outcomes I have not stated (for example, fewer total pages).
+</scope>
+
+<success_spec>
+Output: a subject line, then a message of 150–250 words in plain, direct language,
+ending with one clear call to action (check your first shift date at [SCHEDULE LINK]
+and raise conflicts by [DEADLINE]).
+Before returning, check: (1) every placeholder is preserved, (2) the pager-load
+concern is addressed explicitly, (3) no unstated promises appear.
+</success_spec>

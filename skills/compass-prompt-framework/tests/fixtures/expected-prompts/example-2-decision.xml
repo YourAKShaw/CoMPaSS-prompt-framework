@@ -1,0 +1,43 @@
+<mission>
+Decide whether we should migrate our product-analytics workload from Postgres to
+ClickHouse, or whether a cheaper option meets our needs. The real goal is dashboards
+that are fast enough for the business at acceptable cost and operational risk.
+Assumed intention: we have not committed to migrating; if the evidence clearly favors
+migration, say so and stop at a recommendation rather than writing a migration plan.
+</mission>
+
+<provisions>
+<workload_data>
+[PASTE: table sizes, row counts, growth rate]
+[PASTE: slowest queries with latency and frequency]
+</workload_data>
+- Team: [N] engineers; no one has run ClickHouse in production.
+- Dashboard latency target: [TARGET, e.g. p95 under N seconds] (state an assumption
+  if this is blank).
+- Budget/ops constraints: [ANY KNOWN LIMITS].
+</provisions>
+
+<order_of_operations>
+1. State the decision criteria and their weights before evaluating any option.
+2. Evaluate at least three options against those criteria: (a) Postgres with
+   targeted tuning (indexes, partitioning, materialized views or rollups),
+   (b) Postgres plus a columnar extension or read replica, (c) ClickHouse.
+3. Recommend one option, with the conditions under which the recommendation flips.
+4. Propose the single cheapest experiment that would most reduce uncertainty.
+</order_of_operations>
+
+<scope>
+- Base claims on the pasted data; label any figure you estimate as an estimate.
+- Include migration and operational costs, not only query speed.
+- If the data is insufficient for a confident recommendation, say what is missing.
+</scope>
+
+<success_spec>
+Output: a decision memo in Markdown, under 700 words, with sections: Recommendation
+(one sentence) · Criteria and weights · Option comparison (table) · Risks ·
+What would change this decision · Next experiment · Confidence (high/medium/low,
+with one-line reason).
+Before returning, check: the criteria section precedes the comparison; every
+non-pasted number is labelled as an estimate; the recommendation is consistent
+with the comparison table.
+</success_spec>

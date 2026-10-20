@@ -1,0 +1,58 @@
+<mission>
+Write the first ideal customer profile (ICP) brief for NayaManas, a founder-led
+workflow automation and AI implementation agency, so that outreach and sales time
+goes to the prospects most likely to buy, succeed with an implementation, and
+refer others.
+Assumed intention: this is a qualification ICP for targeting and screening
+prospects, not a narrative buyer persona for marketing copy. If the evidence below
+cannot support a qualification ICP, say what is missing instead of writing a persona.
+</mission>
+
+<provisions>
+<evidence>
+[PASTE: notes from past engagements and pilots: client type, size, problem, outcome]
+[PASTE: recurring themes from discovery calls, with rough counts]
+</evidence>
+- Offer: workflow automation and AI implementation services, delivered by the
+  founder [AND ANY CONTRACTORS].
+- Capacity: [N] concurrent engagements; typical engagement [LENGTH] at [PRICE RANGE].
+- Regions and languages served: [REGIONS].
+- Known exclusions: [ANY WORK WE DO NOT TAKE, e.g. regulated data we cannot handle].
+</provisions>
+
+<anchors>
+<template note="Format only. Do not reuse its content.">
+## ICP: [Segment name]
+**One-line definition:** [who, size, situation]
+## Defining characteristics
+| Attribute | Value | Basis |
+|---|---|---|
+| [Attribute] | [Value] | [Evidence or hypothesis] |
+## Pain points
+1. [Pain, in the customer's words] (Basis: [evidence or hypothesis])
+## Buying signals
+- [Observable signal], seen in [where it can be observed]
+## Disqualifiers
+- [Signal that the prospect is not a fit]
+## Open questions
+- [What would confirm or kill this ICP]
+</template>
+</anchors>
+
+<scope>
+- Define one ICP segment: the strongest one the evidence supports. Name a runner-up
+  segment in one line at most.
+- Base characteristics on the pasted evidence; label anything else as a hypothesis.
+- Make every buying signal observable from outside the company (job posts, tooling,
+  public statements, hiring) or in a first call.
+- Use only figures from the evidence; keep every bracketed placeholder as written,
+  and leave statistics, market sizes and customer quotes out unless pasted.
+</scope>
+
+<success_spec>
+Output: a Markdown brief under 600 words that follows the template headings in order.
+Before returning, check: (1) every characteristic and pain point carries a Basis
+label, (2) each buying signal says where it can be observed, (3) there are at least
+three disqualifiers, (4) every number comes from the pasted evidence or is labelled
+as an estimate.
+</success_spec>
