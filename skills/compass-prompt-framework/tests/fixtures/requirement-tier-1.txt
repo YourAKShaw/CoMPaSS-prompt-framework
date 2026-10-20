@@ -1,0 +1,6 @@
+# Tier 1 requests: one consequential artifact or decision from one prompt. One per line.
+Can you write something to tell my team we're switching to a weekly on-call rotation starting next month? People are already annoyed about pager load.
+Our product-analytics dashboards on Postgres are getting slow. Should we move to ClickHouse? I've pasted our table sizes, the slowest queries, and our team size.
+Write a brief for the first customer ICP persona for NayaManas AI services. What are the defining characteristics, pain points, and signals we should look for?
+Draft a one-page proposal for moving our support team to a four-day week so that leadership can approve a three-month pilot.
+Should we build our own feature-flag service or buy one? I've attached our requirements and the vendor quotes.

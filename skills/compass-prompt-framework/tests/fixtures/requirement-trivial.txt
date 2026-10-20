@@ -1,0 +1,7 @@
+# Tier 0 requests: trivial or factual, answered directly (rule C-1). One per line.
+What's the default port for PostgreSQL?
+What's the default PostgreSQL port?
+What is the capital of France?
+How many bytes are in a kibibyte?
+Convert 5 kilometers to miles.
+Who wrote "The Mythical Man-Month"?

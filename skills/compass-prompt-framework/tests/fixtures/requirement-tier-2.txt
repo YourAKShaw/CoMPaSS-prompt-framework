@@ -1,0 +1,5 @@
+# Tier 2 requests: multi-step or agentic work. One per line.
+The checkout-service CI keeps failing on `test_apply_discount` at random. Fix it.
+Refactor the retry logic in services/payments/ so duplicate charges cannot happen, then run the test suite.
+Investigate why the nightly build pipeline fails on the deploy step and fix it.
+Migrate the user service from Express to Fastify across the codebase and keep every endpoint test passing.
