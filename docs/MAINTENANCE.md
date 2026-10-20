@@ -52,7 +52,8 @@ Dates are targets, not commitments. If the evaluation does not support the prima
 | Every change | `npm run check`; keep SKILL.md, the component table, and the component reference consistent. |
 | A rule changes | Update all three, the templates, and any example that demonstrates the rule; re-run the paper-consistency tests. |
 | The paper is revised | Add the revision as a new file; never edit `compass-paper.md` (its SHA-256 is pinned). Update the generator if extracts should change source. |
-| Monthly | Review Dependabot updates for Actions and dev tooling. |
+| Weekly | Review Dependabot updates for the pinned GitHub Actions. |
+| Monthly | Review Dependabot updates for dev tooling. |
 | Agent Skills specification changes | Check the [specification](https://agentskills.io/specification) and update the manifest and `validate-skill.ts` deliberately. |
 | A release | Follow the release steps in [CONTRIBUTING.md](../.github/CONTRIBUTING.md#-releases-maintainers). |
 
