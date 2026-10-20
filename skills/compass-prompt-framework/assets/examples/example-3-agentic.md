@@ -2,7 +2,7 @@
 
 # Example 3: Agentic coding / multi-step task (full architecture: o and a included)
 
-> Verbatim from [the CoMPaSS paper](../references/compass-paper.md), Section 7 (Proposal; illustrative, not test results).
+> Verbatim from [the CoMPaSS paper](../../references/compass-paper.md), Section 7 (Proposal; illustrative, not test results).
 
 **(a) User requirement**
 > "The checkout-service CI keeps failing on `test_apply_discount` at random. Fix it."

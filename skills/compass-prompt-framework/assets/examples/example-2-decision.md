@@ -2,7 +2,7 @@
 
 # Example 2: Analytical / decision task (includes o; omits a)
 
-> Verbatim from [the CoMPaSS paper](../references/compass-paper.md), Section 7 (Proposal; illustrative, not test results).
+> Verbatim from [the CoMPaSS paper](../../references/compass-paper.md), Section 7 (Proposal; illustrative, not test results).
 
 **(a) User requirement**
 > "Our product-analytics dashboards on Postgres are getting slow. Should we move to ClickHouse? I've pasted our table sizes, the slowest queries, and our team size."

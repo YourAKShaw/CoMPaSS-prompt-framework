@@ -145,7 +145,7 @@ def document(title, intro, body, sources, footer=""):
     return "\n".join(parts).rstrip("\n") + "\n"
 
 
-def paper_link(section, prefix="../references/"):
+def paper_link(section, prefix):
     return "[the CoMPaSS paper]({}compass-paper.md), Section {}".format(prefix, section)
 
 
@@ -214,7 +214,7 @@ def build(paper_raw):
         outputs["assets/examples/" + filename] = document(
             relevel(section, 1).splitlines()[0][2:],
             "> Verbatim from {} (Proposal; illustrative, not test results).".format(
-                paper_link(7)),
+                paper_link(7, "../../references/")),
             "\n".join(relevel(section, 1).splitlines()[1:]),
             sources,
         )

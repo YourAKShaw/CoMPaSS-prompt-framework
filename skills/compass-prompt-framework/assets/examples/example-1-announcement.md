@@ -2,7 +2,7 @@
 
 # Example 1: Communication task (optional components *omitted*)
 
-> Verbatim from [the CoMPaSS paper](../references/compass-paper.md), Section 7 (Proposal; illustrative, not test results).
+> Verbatim from [the CoMPaSS paper](../../references/compass-paper.md), Section 7 (Proposal; illustrative, not test results).
 
 **(a) User requirement**
 > "Can you write something to tell my team we're switching to a weekly on-call rotation starting next month? People are already annoyed about pager load."
