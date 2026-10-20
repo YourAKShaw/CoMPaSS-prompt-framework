@@ -1,0 +1,259 @@
+{
+  "framework": "CoMPaSS",
+  "skill_version": "0.1.0-alpha",
+  "status": "Proposal. Not benchmarked or validated; see references/limitations.md.",
+  "source": "references/compass-paper.md, Sections 5.2, 5.3, and 6",
+  "acronym_rule": "Uppercase letters (C, M, P, S, S) are mandatory. Lowercase letters (o, a) are optional and included only when an inclusion trigger fires.",
+  "section_order": [
+    "mission",
+    "provisions",
+    "order_of_operations",
+    "anchors",
+    "scope",
+    "success_spec"
+  ],
+  "section_order_note": "Default layout, not a guarantee: format effects vary by model (Sclar et al., ICLR 2024).",
+  "tiers": [
+    {
+      "tier": 0,
+      "name": "trivial",
+      "description": "A factual lookup or simple request answerable directly.",
+      "action": "Stop (rule C-1). Ask the question directly or use ART/RTF."
+    },
+    {
+      "tier": 1,
+      "name": "single-turn artifact or decision",
+      "description": "One prompt produces one consequential deliverable or decision.",
+      "action": "Run the full C stage and assemble a CoMPaSS prompt."
+    },
+    {
+      "tier": 2,
+      "name": "multi-step or agentic",
+      "description": "An agent works across steps, tools, or files.",
+      "action": "Run the full C stage, assemble a CoMPaSS prompt, and check the o triggers; agents usually need checkpoints and executable verification."
+    }
+  ],
+  "intention_confidence": [
+    {
+      "level": "high",
+      "action": "Proceed. Record the strongest alternative reading and why it was rejected."
+    },
+    {
+      "level": "medium",
+      "action": "Proceed, but write the assumed intention explicitly into Mission as an \"Assumed intention:\" line (rule C-2)."
+    },
+    {
+      "level": "low",
+      "action": "Ask at most three clarifying questions before writing the prompt, then restart the C stage (rule C-2)."
+    }
+  ],
+  "max_clarifying_questions": 3,
+  "components": [
+    {
+      "id": "comprehend",
+      "letter": "C",
+      "name": "Comprehend",
+      "mandatory": true,
+      "stage": "before_prompt_writing",
+      "appears_in_prompt": false,
+      "purpose": "Identify Action, Intention, Deliverable/Decision and efficient Path; set the complexity tier; surface ambiguity.",
+      "fields": [
+        {
+          "key": "action",
+          "name": "Action",
+          "question": "What is the user doing right now?",
+          "example": "Drafting a team announcement"
+        },
+        {
+          "key": "intention",
+          "name": "Intention",
+          "question": "Why are they doing it? What outcome in the world do they want?",
+          "example": "Get the rotation adopted without a morale hit"
+        },
+        {
+          "key": "deliverable",
+          "name": "Deliverable / Decision",
+          "question": "What artifact or decision must exist at the end?",
+          "example": "Send-ready message, 150–250 words"
+        },
+        {
+          "key": "path",
+          "name": "Efficient path",
+          "question": "What is the cheapest route that reliably gets there?",
+          "example": "Single pass; placeholders for unknown dates; no examples"
+        }
+      ],
+      "control_fields": [
+        {
+          "key": "tier",
+          "name": "Tier",
+          "question": "0 = trivial, 1 = single-turn artifact or decision, 2 = multi-step or agentic",
+          "example": "Tier 1"
+        },
+        {
+          "key": "intentionConfidence",
+          "name": "Intention confidence",
+          "question": "High / medium / low, plus the strongest alternative reading",
+          "example": "Medium-high; alternative: persuade leadership (rejected: 'tell my team')"
+        }
+      ],
+      "rules": [
+        {
+          "id": "C-1",
+          "name": "tier gate",
+          "text": "For Tier 0, stop. Ask the question directly or use ART/RTF."
+        },
+        {
+          "id": "C-2",
+          "name": "ambiguity gate",
+          "text": "If intention confidence is low, ask at most three clarifying questions before writing the prompt. If medium, proceed, but write the assumed intention explicitly into Mission so the model and the user can both see and correct it."
+        },
+        {
+          "id": "C-3",
+          "name": "no verbatim card",
+          "text": "The card is not pasted into the prompt. Action and Intention go into M, Deliverable goes into M and Success spec, and Path decides whether o and a are included and what goes into P."
+        },
+        {
+          "id": "C-4",
+          "name": "path realism",
+          "text": "The efficient path must name what can be skipped (research, examples, steps) as well as what must be done."
+        }
+      ],
+      "grounding": "Gap in existing frameworks (paper Section 4); Anthropic's \"start minimal, add based on failure modes\"."
+    },
+    {
+      "id": "order_of_operations",
+      "letter": "o",
+      "name": "order of operations",
+      "mandatory": false,
+      "stage": "prompt",
+      "appears_in_prompt": true,
+      "tag": "order_of_operations",
+      "purpose": "A required sequence of steps, included only when the order itself is a requirement.",
+      "inclusion_triggers": [
+        {
+          "id": "o-1",
+          "name": "sequence is a requirement",
+          "text": "Sequence is a requirement, for example \"reproduce before fixing\", \"fix decision criteria before scoring options\", or a compliance-mandated order."
+        },
+        {
+          "id": "o-2",
+          "name": "non-reasoning model on a multi-step reasoning task",
+          "text": "The target is a non-reasoning model on a multi-step reasoning task. Decomposition methods (least-to-most, plan-and-solve) have evidence of benefit there."
+        },
+        {
+          "id": "o-3",
+          "name": "agent needs checkpoints",
+          "text": "An agent needs checkpoints, where progress must be reported or confirmed between phases."
+        }
+      ],
+      "exclusion_rule": "Omit when the steps would merely describe how to think to a reasoning model (OpenAI guidance; Meincke et al., 2025).",
+      "grounding": "Least-to-most, plan-and-solve, ReAct; OpenAI and Meincke et al. on reasoning models."
+    },
+    {
+      "id": "mission",
+      "letter": "M",
+      "name": "Mission",
+      "mandatory": true,
+      "stage": "prompt",
+      "appears_in_prompt": true,
+      "tag": "mission",
+      "purpose": "One statement of what to produce or decide and why (the intention).",
+      "rules": [
+        "One or two sentences stating the deliverable or decision and the intention behind it (\"…so that…\").",
+        "When C-2 applies, add an \"Assumed intention:\" line.",
+        "Mission comes first among the prompt sections, so the model reads the purpose before the details."
+      ],
+      "grounding": "RISEN \"End Goal\", CO-STAR \"Objective\"; vendor guidance on clear, direct instructions."
+    },
+    {
+      "id": "provisions",
+      "letter": "P",
+      "name": "Provisions",
+      "mandatory": true,
+      "stage": "prompt",
+      "appears_in_prompt": true,
+      "tag": "provisions",
+      "purpose": "The minimal high-signal context: facts, materials, audience, tools or file pointers, plus an optional one-line perspective in place of a persona.",
+      "rules": [
+        "Include the smallest set of high-signal context a capable newcomer would need: facts, audience, materials, and tool notes.",
+        "For agents, give pointers such as file paths and commands, for just-in-time retrieval, rather than pasted content.",
+        "Include only context that changes the output. Replace unknown facts with explicit placeholders rather than inventing them."
+      ],
+      "persona_rule": "No \"You are a world-class X\" line by default. If perspective or voice matters, add one perspective line and treat it as a style lever, not an accuracy lever.",
+      "grounding": "Anthropic context engineering; Zheng et al. and Basil et al. on personas."
+    },
+    {
+      "id": "anchors",
+      "letter": "a",
+      "name": "anchors",
+      "mandatory": false,
+      "stage": "prompt",
+      "appears_in_prompt": true,
+      "tag": "anchors",
+      "purpose": "Examples or exemplars that show format, voice or labelling.",
+      "inclusion_triggers": [
+        {
+          "id": "a-1",
+          "name": "easier to show than describe",
+          "text": "Format, voice or labelling is easier to show than describe."
+        },
+        {
+          "id": "a-2",
+          "name": "fine-grained classification",
+          "text": "The task is fine-grained classification."
+        },
+        {
+          "id": "a-3",
+          "name": "vendor recommends examples by default",
+          "text": "The target vendor recommends examples by default (Gemini)."
+        }
+      ],
+      "forms": [
+        "3–5 diverse examples as a few-shot set",
+        "One clearly labelled template anchor as a format skeleton"
+      ],
+      "exclusion_rule": "For reasoning models, try without anchors first.",
+      "grounding": "Anthropic (3–5 diverse examples); Google (examples recommended); OpenAI (zero-shot first for reasoning models)."
+    },
+    {
+      "id": "scope",
+      "letter": "S",
+      "name": "Scope",
+      "mandatory": true,
+      "stage": "prompt",
+      "appears_in_prompt": true,
+      "tag": "scope",
+      "purpose": "Constraints, boundaries, non-goals and the assumption/clarification policy.",
+      "rules": [
+        "State what is in and out, non-goals, prohibited shortcuts, and length or budget limits.",
+        "State the assumption policy: ask, or proceed and state assumptions.",
+        "Phrase rules positively where possible, telling the model what to do rather than only what to avoid."
+      ],
+      "grounding": "Shumer's \"constraints\"; RISEN \"Narrowing\"; ART \"Terms\"."
+    },
+    {
+      "id": "success_spec",
+      "letter": "S",
+      "name": "Success spec",
+      "mandatory": true,
+      "stage": "prompt",
+      "appears_in_prompt": true,
+      "tag": "success_spec",
+      "purpose": "Output shape (format, length, tone) and verification/acceptance checks.",
+      "parts": [
+        {
+          "key": "output_shape",
+          "name": "Output shape",
+          "text": "Format, sections, length, tone. For machine-consumed output, use the provider's schema enforcement (structured outputs or tool schemas) rather than prose instructions. For reasoning-heavy tasks that need structure, ask for reasoning first and formatting second, following Tam et al."
+        },
+        {
+          "key": "verification_checks",
+          "name": "Verification / acceptance checks",
+          "text": "Concrete, checkable conditions the output must satisfy before it is returned. For agents, these are executable checks plus a report of what was and was not verified, following Shumer's template."
+        }
+      ],
+      "grounding": "Shumer; OpenAI Structured Outputs; Tam et al.; Anthropic's \"verify its work\" guidance."
+    }
+  ]
+}
