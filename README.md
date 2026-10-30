@@ -2,6 +2,8 @@
 
 # 🧭 CoMPaSS Prompt Framework
 
+[![HOL Guard](https://img.shields.io/endpoint?url=https%3A%2F%2Fhol.org%2Fapi%2Fregistry%2Fbadges%2Fplugin%3Fslug%3Dyourakshaw%252Fcompass-prompt-framework%26metric%3Drelease)](https://hol.org/registry/plugins/yourakshaw%2Fcompass-prompt-framework?utm_source=hol_marketplace&utm_medium=plugins_badge&utm_campaign=plugins&utm_content=yourakshaw%2Fcompass-prompt-framework)
+
 **Analysis-first prompting for consequential prompts, agent briefs, and decisions.**
 
 Understand what the user is doing and why, before you write a word of the prompt. Then define what done looks like.
